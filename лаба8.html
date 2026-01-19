@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары для домашних животных | ЗооМаркет</title>
+    
+    <!-- Метатеги для SEO -->
+    <meta name="description" content="ЗооМаркет - интернет-магазин товаров для домашних животных. Качественные корма, игрушки, аксессуары и средства по уходу для собак, кошек, грызунов и птиц. Бесплатная доставка от 2000 ₽.">
+    <meta name="keywords" content="товары для животных, корм для собак, корм для кошек, игрушки для питомцев, аксессуары для животных, зоотовары, товары для домашних питомцев, зоомагазин, товары для кошек, товары для собак">
+    
+    <!-- Фавикон -->
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+    
+    <!-- Предзагрузка шрифтов -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Иконочный шрифт -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Структурированные данные для SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "ЗооМаркет",
+        "description": "Интернет-магазин товаров для домашних животных",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Пушкинская, д. 15",
+            "addressLocality": "Москва",
+            "addressCountry": "RU"
+        },
+        "telephone": "+7-495-123-45-67",
+        "openingHours": "Mo-Fr 09:00-21:00, Sa-Su 10:00-20:00",
+        "priceRange": "₽₽",
+        "image": "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    }
+    </script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <!-- Личный кабинет слева сверху -->
+                <div class="logo-area">
+                    <div class="user-area" id="userBtn">
+                        <div class="user-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Личный кабинет</span>
+                    </div>
+                </div>
+                
+                <!-- Две навигационные кнопки справа -->
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Корзина <span id="cartCount">0</span>
+                    </button>
+                    <button class="nav-btn" id="wishlistBtn">
+                        <i class="fas fa-heart"></i>
+                        Избранное <span id="wishlistCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Боковые панели -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Панель личного кабинета -->
+    <div class="account-panel" id="accountPanel">
+        <div class="account-header">
+            <h3>Личный кабинет</h3>
+            <button class="close-account" id="closeAccount">&times;</button>
+        </div>
+        
+        <div class="user-profile">
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-name" id="userProfileName">Иван Петров</div>
+            <div class="profile-email" id="userProfileEmail">ivan.petrov@example.com</div>
+        </div>
+        
+        <div class="account-menu">
+            <button class="account-menu-item" id="profileBtn">
+                <i class="fas fa-user-edit"></i>
+                <span>Редактировать профиль</span>
+            </button>
+            <button class="account-menu-item" id="ordersBtn">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Мои заказы</span>
+            </button>
+            <button class="account-menu-item" id="addressesBtn">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Адреса доставки</span>
+            </button>
+            <button class="account-menu-item" id="notificationsBtn">
+                <i class="fas fa-bell"></i>
+                <span>Уведомления</span>
+            </button>
+            <button class="account-menu-item" id="settingsBtn">
+                <i class="fas fa-cog"></i>
+                <span>Настройки</span>
+            </button>
+        </div>
+        
+        <div class="account-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalOrders">5</div>
+                <div class="stat-label">Всего заказов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="bonusPoints">1250</div>
+                <div class="stat-label">Бонусных баллов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="wishlistCountStat">3</div>
+                <div class="stat-label">В избранном</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="cartCountStat">2</div>
+                <div class="stat-label">В корзине</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Корзина -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="sidebar-header">
+            <h3>Корзина покупок</h3>
+            <button class="close-sidebar" id="closeCart">&times;</button>
+        </div>
+        <div id="cartItems">
+            <div class="empty-message">Ваша корзина пуста</div>
+        </div>
+        <div class="sidebar-footer">
+            <div class="total-price">
+                <span>Итого:</span>
+                <span id="cartTotal">0 ₽</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+    
+    <!-- Избранное -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="sidebar-header">
+            <h3>Избранное</h3>
+            <button class="close-sidebar" id="closeWishlist">&times;</button>
+        </div>
+        <div id="wishlistItems">
+            <div class="empty-message">В избранном пока ничего нет</div>
+        </div>
+    </div>
+
+    <!-- Секция с фото и информацией -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <!-- Замененное фото для главного раздела -->
+                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Товары для домашних животных">
+                </div>
+                
+                <div class="hero-info">
+                    <h2>Всё для ваших любимых питомцев</h2>
+                    <p>Мы предлагаем широкий ассортимент товаров для домашних животных: качественные корма, игрушки, аксессуары и средства по уходу. Наша продукция проходит строгий контроль качества и разработана с учетом потребностей разных видов животных.</p>
+                    <p>Наши специалисты помогут подобрать оптимальные товары для вашего питомца, учитывая его возраст, породу и индивидуальные особенности.</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Бесплатная доставка от 2000 ₽</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Гарантия качества всех товаров</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея товаров в формате 2x2 -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Популярные товары для питомцев</h2>
+            
+            <div class="products-grid-2x2">
+                <!-- Первый ряд: 2 фото -->
+                <div class="product-card" data-id="1" data-name="Премиум корм для собак" data-price="1299" data-img="https://basket-12.wbbasket.ru/vol1681/part168199/168199669/images/big/1.webp">
+                    <div class="product-image">
+                        <img src="https://basket-12.wbbasket.ru/vol1681/part168199/168199669/images/big/1.webp" alt="Премиум корм для собак">
+                    </div>
+                    <div class="product-info">
+                        <h3>Премиум корм для собак</h3>
+                        <p>Сбалансированный рацион для активных собак всех пород. Содержит натуральное мясо, витамины и минералы для здоровья шерсти и суставов.</p>
+                        <div class="product-price">1 299 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="2" data-name="Кошачий корм с лососем" data-price="899" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxlVqH1olRSOWG_doU09obeShOMSenT0rfvQ&s">
+                    <div class="product-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxlVqH1olRSOWG_doU09obeShOMSenT0rfvQ&s" alt="Кошачий корм с лососем">
+                    </div>
+                    <div class="product-info">
+                        <h3>Кошачий корм с лососем</h3>
+                        <p>Влажный корм премиум-класса с лососем и овощами. Способствует здоровью мочевыводящих путей и блестящей шерсти вашего кота.</p>
+                        <div class="product-price">899 ₽</div>
+                    </div>
+                </div>
+                
+                <!-- Второй ряд: 2 фото -->
+                <div class="product-card" data-id="3" data-name="Интерактивные игрушки для кошек" data-price="599" data-img="https://images.tomas.by/i3/firms/49/5348/5348711/interaktivnaya-igrushka-myach-dlya-koshek-i-sobak_3edc8307d6afa4c_300x300.webp.jpg">
+                    <div class="product-image">
+                        <img src="https://images.tomas.by/i3/firms/49/5348/5348711/interaktivnaya-igrushka-myach-dlya-koshek-i-sobak_3edc8307d6afa4c_300x300.webp.jpg" alt="Интерактивные игрушки для кошек и собак">
+                    </div>
+                    <div class="product-info">
+                        <h3>Интерактивные игрушки для кошек</h3>
+                        <p>Набор игрушек с кошачьей мятой и перьями для активных игр. Развивают охотничьи инстинкты и обеспечивают физическую активность.</p>
+                        <div class="product-price">599 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="4" data-name="Аксессуары для выгула собак" data-price="1499" data-img="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80" alt="Аксессуары для собак">
+                    </div>
+                    <div class="product-info">
+                        <h3>Аксессуары для выгула собак</h3>
+                        <p>Прочные поводки, ошейники и шлейки из экологичных материалов. Удобные и безопасные для комфортных прогулок с питомцем.</p>
+                        <div class="product-price">1 499 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Контакты и информация</h2>
+            
+            <div class="contact-columns">
+                <div class="contact-column">
+                    <h3>Контактная информация</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Адрес магазина:</strong><br>
+                                г. Москва, ул. Пушкинская, д. 15
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Телефон:</strong><br>
+                                +7 (495) 123-45-67
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                info@zoomarket.ru
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Режим работы:</strong><br>
+                                Пн-Пт: 9:00-21:00, Сб-Вс: 10:00-20:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-column">
+                    <h3>Дополнительная информация</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <strong>Доставка:</strong><br>
+                                Бесплатная доставка при заказе от 2000 ₽. Курьерская доставка по Москве в течение дня.
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Гарантия:</strong><br>
+                                На все товары предоставляется гарантия от 14 дней до 1 года в зависимости от категории.
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-credit-card"></i>
+                            <div>
+                                <strong>Способы оплаты:</strong><br>
+                                Наличные, банковские карты, онлайн-оплата, рассрочка.
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-question-circle"></i>
+                            <div>
+                                <strong>Консультация:</strong><br>
+                                Наши специалисты готовы ответить на все ваши вопросы по подбору товаров для питомцев.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Убрал "ЗМ" из футера и заменил на простую иконку -->
+                <div class="footer-logo">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <p>Интернет-магазин товаров для домашних животных "ЗооМаркет"</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2023 ЗооМаркет. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
